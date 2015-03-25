@@ -1,0 +1,14 @@
+#!/bin/bash
+cp /home/pi/photobooth_images/temp/*.jpg /home/pi/photobooth_images
+mogrify -resize 968x648 /home/pi/photobooth_images/temp/*.jpg
+montage /home/pi/photobooth_images/temp/*.jpg -tile 2x2 -geometry +10+10 /home/pi/temp_montage.jpg
+
+#montage /home/pi/temp_montage2.jpg /home/pi/photobooth_label.jpg -tile 2x1 -geometry +5+5 /home/pi/temp_montage3.jpg
+#lp -d Canon_CP910 /home/pi/temp_montage.jpg
+suffix=$(date +%y%m%d-%H%M%S)
+OF=/home/pi/photobooth_images/montage/PB_${suffix}.jpg
+mv /home/pi/temp_montage.jpg $OF
+eog $OF --display=:1 --fullscreen &
+rm /home/pi/photobooth_images/temp/*.jpg
+echo $OF
+#rm /home/pi/temp/*

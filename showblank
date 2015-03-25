@@ -1,0 +1,4 @@
+
+sudo pkill fbi
+#fbi -d /dev/fb0 $OF &
+sudo fbi -t 5 -a -T 1 /home/pi/blank.png &

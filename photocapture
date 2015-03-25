@@ -1,0 +1,7 @@
+gphoto2 --quiet --capture-image-and-download --force-overwrite  --filename /home/pi/image.jpg
+OF=/home/pi/photobooth_images/temp/photobooth$(date +%y%m%d-%H%M%S).jpg
+echo $OF
+mv /home/pi/image.jpg $OF
+sudo pkill fbi
+#fbi -d /dev/fb0 $OF &
+sudo fbi -t 5 -a -T 1 $OF &
